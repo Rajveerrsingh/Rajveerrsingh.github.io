@@ -30,25 +30,6 @@
       overflow-x: hidden;
     }
 
-    /* Floating confetti dots */
-    .dots {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.55;
-      filter: blur(0.2px);
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.20) 0 2px, transparent 3px),
-        radial-gradient(circle at 65% 20%, rgba(255,255,255,0.18) 0 1.5px, transparent 3px),
-        radial-gradient(circle at 85% 70%, rgba(255,255,255,0.16) 0 2px, transparent 3px),
-        radial-gradient(circle at 25% 80%, rgba(255,255,255,0.14) 0 1.5px, transparent 3px);
-      animation: drift 14s ease-in-out infinite alternate;
-    }
-    @keyframes drift {
-      from { transform: translate3d(0,0,0) scale(1); }
-      to   { transform: translate3d(0,-10px,0) scale(1.03); }
-    }
-
     .container {
       max-width: var(--max);
       margin: 0 auto;
@@ -94,9 +75,7 @@
       background: conic-gradient(from 90deg, transparent, rgba(255,255,255,0.18), transparent);
       animation: shine 4.5s linear infinite;
     }
-    @keyframes shine {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes shine { to { transform: rotate(360deg); } }
 
     .brand h1 {
       font-size: 18px;
@@ -193,12 +172,12 @@
       cursor: default;
       user-select: none;
       transform: translateZ(0);
-      animation: pop 1200ms ease both;
+      animation: pop 700ms ease both;
     }
-    .badge:nth-child(2) { animation-delay: 80ms; }
-    .badge:nth-child(3) { animation-delay: 160ms; }
-    .badge:nth-child(4) { animation-delay: 240ms; }
-    .badge:nth-child(5) { animation-delay: 320ms; }
+    .badge:nth-child(2) { animation-delay: 60ms; }
+    .badge:nth-child(3) { animation-delay: 120ms; }
+    .badge:nth-child(4) { animation-delay: 180ms; }
+    .badge:nth-child(5) { animation-delay: 240ms; }
 
     @keyframes pop {
       from { opacity: 0; transform: translateY(10px) scale(0.98); }
@@ -248,27 +227,7 @@
       color: var(--muted);
     }
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .pill {
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.18);
-      color: var(--text);
-      font-size: 12px;
-      transition: transform 160ms ease;
-    }
-    .pill:hover { transform: translateY(-2px); }
-
-    .projects {
-      display: grid;
-      gap: 12px;
-    }
+    .projects { display: grid; gap: 12px; }
 
     .project {
       padding: 14px;
@@ -303,9 +262,7 @@
       padding-left: 18px;
     }
 
-    .project li {
-      margin: 6px 0;
-    }
+    .project li { margin: 6px 0; }
 
     .btnrow {
       margin-top: 12px;
@@ -329,29 +286,22 @@
     }
     .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
 
-    .funfact {
-      display: grid;
-      gap: 10px;
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .meter {
-      width: 100%;
-      height: 10px;
+    .pill {
+      padding: 8px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      font-size: 12px;
+      transition: transform 160ms ease;
     }
-
-    .bar {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, rgba(120,180,255,0.9), rgba(255,120,200,0.9));
-      border-radius: 999px;
-      animation: fill 1200ms ease forwards;
-    }
-
-    @keyframes fill { to { width: var(--w); } }
+    .pill:hover { transform: translateY(-2px); }
 
     footer {
       margin-top: 18px;
@@ -364,46 +314,175 @@
       text-align: center;
     }
 
+    /* Floating hover tab */
+    .hover-tab {
+      position: fixed;
+      pointer-events: none;
+      padding: 10px 12px;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.4;
+      max-width: 240px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 160ms ease, transform 160ms ease;
+      z-index: 9999;
+    }
+
+    .hover-source { cursor: help; }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      .dots, .avatar::after, .badge, .bar { animation: none !important; }
+      .avatar::after, .badge { animation: none !important; }
       .chip:hover, .pill:hover, .project:hover, .btn:hover { transform: none !important; }
     }
   </style>
+
+  <script>
+    // Smooth scroll for internal links
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Copy email to clipboard
+    function copyEmail(email) {
+      if (!navigator.clipboard) {
+        alert('Clipboard not available in this browser.');
+        return;
+      }
+      navigator.clipboard.writeText(email).then(() => {
+        const toast = document.createElement('div');
+        toast.textContent = 'Email copied to clipboard';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.padding = '10px 14px';
+        toast.style.background = 'rgba(0,0,0,0.75)';
+        toast.style.color = '#fff';
+        toast.style.borderRadius = '8px';
+        toast.style.fontSize = '13px';
+        toast.style.zIndex = '9999';
+        (document.body || document.documentElement).appendChild(toast);
+        setTimeout(() => toast.remove(), 1800);
+      });
+    }
+
+    // Reveal cards on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    // Floating hover tab (created after DOM is ready)
+    let hoverTab = null;
+
+    function ensureHoverTab() {
+      if (hoverTab) return hoverTab;
+      const host = document.body || document.documentElement;
+      if (!host) return null;
+
+      hoverTab = document.createElement('div');
+      hoverTab.className = 'hover-tab';
+      host.appendChild(hoverTab);
+      return hoverTab;
+    }
+
+    function showHoverTab(text, x, y) {
+      const el = ensureHoverTab();
+      if (!el) return;
+      el.textContent = text || '';
+      el.style.left = (x + 14) + 'px';
+      el.style.top = (y + 14) + 'px';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }
+
+    function hideHoverTab() {
+      const el = ensureHoverTab();
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(6px)';
+    }
+
+    // Lightweight diagnostics (acts like "tests" in the console)
+    function runDiagnostics() {
+      console.assert(!!(document.body || document.documentElement), 'Diagnostics: expected a document body/host.');
+      const tab = ensureHoverTab();
+      console.assert(!!tab, 'Diagnostics: hover tab should be created.');
+      const hoverTargets = document.querySelectorAll('[data-hover]');
+      console.assert(hoverTargets.length > 0, 'Diagnostics: expected at least one [data-hover] element.');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set up reveal animations
+      document.querySelectorAll('.card, .project').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(14px)';
+        el.style.transition = 'opacity 400ms ease, transform 400ms ease';
+        revealObserver.observe(el);
+      });
+
+      // Hover behavior
+      document.querySelectorAll('[data-hover]').forEach(el => {
+        el.classList.add('hover-source');
+        el.addEventListener('mousemove', (e) => {
+          showHoverTab(el.getAttribute('data-hover'), e.clientX, e.clientY);
+        });
+        el.addEventListener('mouseleave', hideHoverTab);
+      });
+
+      // Create hover tab only after DOM is ready (prevents appendChild null errors)
+      ensureHoverTab();
+
+      // Console diagnostics
+      runDiagnostics();
+    });
+  </script>
 </head>
 <body>
-  <div class="dots"></div>
-
   <div class="container">
     <div class="topbar">
       <div class="brand">
         <div class="avatar" aria-hidden="true"></div>
         <div>
           <h1>Rajveer Singh</h1>
-          <p class="tagline">Computer Programming & Analysis • Co-op Candidate • I build practical stuff 🚀</p>
+          <p class="tagline">Computer Programming &amp; Analysis • Full‑Stack (Backend‑Focused) Co‑op • I build things that actually work 🚀</p>
         </div>
       </div>
 
       <div class="links">
         <a class="chip" href="https://github.com/yourusername" target="_blank" rel="noreferrer">🐙 GitHub</a>
         <a class="chip" href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noreferrer">💼 LinkedIn</a>
-        <a class="chip" href="mailto:your.email@email.com">✉️ Email</a>
+        <a class="chip" href="#" onclick="copyEmail('your.email@email.com'); return false;">✉️ Copy Email</a>
       </div>
     </div>
 
     <section class="hero">
-      <h2>Hi! I’m Rajveer — I turn ideas into working apps.</h2>
+      <h2>Hi, I’m Rajveer — builder first, student always.</h2>
       <p>
-        I’m a Georgian College student focused on backend APIs, databases, and clean project structure.
-        I like building things that feel real (auth, CRUD, validation, testing), and I’m looking for a co-op where I can ship features and learn fast.
+        I’m a Computer Programming and Analysis student who enjoys working across the full stack, building complete features from idea to implementation.
+        I’m especially comfortable with backend APIs, databases, and application logic, while also enjoying frontend work that improves usability and user experience.
+        I’m actively seeking a co-op where I can contribute end-to-end, learn from real-world projects, and grow as a well-rounded developer.
       </p>
 
       <div class="mini" aria-label="quick highlights">
-        <span class="badge">✅ REST APIs</span>
-        <span class="badge">✅ MongoDB</span>
-        <span class="badge">✅ Postman Testing</span>
-        <span class="badge">✅ Git & GitHub</span>
-        <span class="badge">✅ Team Projects</span>
+        <span class="badge">Backend APIs</span>
+        <span class="badge">Databases</span>
+        <span class="badge">Testing</span>
+        <span class="badge">Team Projects</span>
       </div>
     </section>
 
@@ -412,13 +491,13 @@
         <div class="hd"><h3>Projects I’m proud of</h3><span style="color:rgba(255,255,255,0.65);font-size:12px;">(clickable links)</span></div>
         <div class="bd">
           <div class="projects">
-            <div class="project">
+            <div class="project" data-hover="REST API + MongoDB • CRUD • validation • tested with Postman">
               <div class="row">
                 <h4>Personal Expense Tracker</h4>
                 <span class="stack">Node.js • Express • MongoDB</span>
               </div>
               <ul>
-                <li>Built REST endpoints for users & expenses with validation and error handling.</li>
+                <li>Built REST endpoints for users &amp; expenses with validation and error handling.</li>
                 <li>Implemented analytics-style summaries (totals, categories) for quick insights.</li>
                 <li>Tested routes with Postman and documented expected vs received behavior.</li>
               </ul>
@@ -428,7 +507,7 @@
               </div>
             </div>
 
-            <div class="project">
+            <div class="project" data-hover="API-focused project • clean controller structure • middleware">
               <div class="row">
                 <h4>Fitness Tracker API</h4>
                 <span class="stack">Node.js • MongoDB</span>
@@ -442,7 +521,7 @@
               </div>
             </div>
 
-            <div class="project">
+            <div class="project" data-hover="Android app • user input • UI layouts">
               <div class="row">
                 <h4>Lucky Number Android App</h4>
                 <span class="stack">Java • XML</span>
@@ -461,63 +540,75 @@
       </div>
 
       <aside class="card">
-        <div class="hd"><h3>Skill Stack</h3><span style="color:rgba(255,255,255,0.65);font-size:12px;">(what I use)</span></div>
+        <div class="hd"><h3>How I think as a developer</h3><span style="color:rgba(255,255,255,0.65);font-size:12px;">(my approach)</span></div>
         <div class="bd">
-          <div class="skills" aria-label="skills">
-            <span class="pill">JavaScript</span>
-            <span class="pill">Python</span>
-            <span class="pill">Java</span>
-            <span class="pill">C#</span>
-            <span class="pill">SQL</span>
-            <span class="pill">HTML/CSS</span>
-            <span class="pill">Node.js</span>
-            <span class="pill">Express</span>
-            <span class="pill">MongoDB</span>
-            <span class="pill">ASP.NET MVC</span>
-            <span class="pill">Postman</span>
-            <span class="pill">GitHub</span>
-            <span class="pill">Power BI</span>
-            <span class="pill">Excel</span>
+          <div style="font-family:monospace;font-size:13px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:12px;line-height:1.6;" data-hover="My usual workflow: understand → design → build → improve">
+            <div>// understand the problem</div>
+            <div>read requirements → ask questions → break into tasks</div><br />
+            <div>// design &amp; plan</div>
+            <div>sketch API routes → choose data models → plan validation</div><br />
+            <div>// build &amp; test</div>
+            <div>implement features → test with Postman → handle errors</div><br />
+            <div>// improve</div>
+            <div>refactor code → improve readability → add edge cases</div>
           </div>
 
-          <div style="height:14px"></div>
+          <div style="height:16px"></div>
 
-          <div class="funfact">
-            <div>
-              <div style="display:flex;justify-content:space-between;gap:10px;">
-                <strong style="color:var(--text);font-size:13px;">Debug Energy</strong>
-                <span style="color:rgba(255,255,255,0.65);font-size:12px;">high</span>
-              </div>
-              <div class="meter" aria-label="debug energy"><div class="bar" style="--w: 86%;"></div></div>
+          <div class="hd"><h3>Skills</h3></div>
+          <div class="bd">
+            <div class="skills" aria-label="skills">
+              <span class="pill" data-hover="Primary language for backend APIs">JavaScript</span>
+              <span class="pill" data-hover="Used for scripting and data tasks">Python</span>
+              <span class="pill" data-hover="Android and object-oriented programming">Java</span>
+              <span class="pill" data-hover="ASP.NET MVC and backend logic">C#</span>
+              <span class="pill" data-hover="Relational database queries">SQL</span>
+              <span class="pill" data-hover="Frontend basics">HTML/CSS</span>
+              <span class="pill" data-hover="Backend runtime">Node.js</span>
+              <span class="pill" data-hover="API routing and middleware">Express</span>
+              <span class="pill" data-hover="NoSQL database">MongoDB</span>
+              <span class="pill" data-hover="MVC framework">ASP.NET MVC</span>
+              <span class="pill" data-hover="API testing tool">Postman</span>
+              <span class="pill" data-hover="Version control">GitHub</span>
+              <span class="pill" data-hover="Data visualization">Power BI</span>
+              <span class="pill" data-hover="Spreadsheets and analysis">Excel</span>
             </div>
 
-            <div>
-              <div style="display:flex;justify-content:space-between;gap:10px;">
-                <strong style="color:var(--text);font-size:13px;">Teamwork Mode</strong>
-                <span style="color:rgba(255,255,255,0.65);font-size:12px;">always on</span>
+            <div style="height:14px"></div>
+
+            <div style="padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:16px;background:rgba(0,0,0,0.18);">
+              <div style="color:var(--text);font-weight:700;">Quick Pitch</div>
+              <div style="margin-top:6px; color: var(--muted); font-size: 13px;">
+                I’m looking for a co-op where I can work across the full stack — contributing to backend APIs and databases while also helping with frontend features, testing, and overall product quality as part of a real development team.
               </div>
-              <div class="meter" aria-label="teamwork mode"><div class="bar" style="--w: 92%;"></div></div>
-            </div>
-
-            <div>
-              <div style="display:flex;justify-content:space-between;gap:10px;">
-                <strong style="color:var(--text);font-size:13px;">Shipping Features</strong>
-                <span style="color:rgba(255,255,255,0.65);font-size:12px;">growing</span>
-              </div>
-              <div class="meter" aria-label="shipping features"><div class="bar" style="--w: 74%;"></div></div>
-            </div>
-          </div>
-
-          <div style="height:14px"></div>
-
-          <div style="padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:16px;background:rgba(0,0,0,0.18);">
-            <div style="color:var(--text);font-weight:700;">Quick Pitch</div>
-            <div style="margin-top:6px; color: var(--muted); font-size: 13px;">
-              I’m looking for a co-op where I can build APIs, work with databases, test features, and collaborate with a team.
             </div>
           </div>
         </div>
       </aside>
+    </section>
+
+    <section class="card" style="margin-top:18px;">
+      <div class="hd"><h3>Work Experience</h3><span style="color:rgba(255,255,255,0.65);font-size:12px;">(professional experience)</span></div>
+      <div class="bd">
+        <div style="margin-bottom:18px;">
+          <strong>Sales Lead — Famous Footwear</strong><br />
+          <span style="color:rgba(255,255,255,0.65);font-size:13px;">July 2025 – Present</span>
+          <ul style="margin:8px 0 0; padding-left:18px;">
+            <li>Led daily store operations and supported team members in a fast-paced retail environment.</li>
+            <li>Communicated clearly with customers and staff to resolve issues and maintain service quality.</li>
+            <li>Demonstrated reliability, leadership, and problem-solving skills transferable to team-based tech roles.</li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom:4px;">
+          <strong>Aldo Group</strong><br />
+          <span style="color:rgba(255,255,255,0.65);font-size:13px;">October 2023 – July 2025</span>
+          <ul style="margin:8px 0 0; padding-left:18px;">
+            <li><strong>Sales Lead</strong> (August 2024 – July 2025): Promoted based on performance; supported store leadership, assisted with team coordination, and helped resolve customer and operational issues.</li>
+            <li><strong>Sales Associate</strong> (October 2023 – August 2024): Provided customer service, handled POS transactions, and maintained store standards in a fast-paced environment.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <footer>
