@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rajveer Singh | Fun Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.14);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(120, 180, 255, 0.25), transparent 55%),
+                  radial-gradient(900px 600px at 80% 20%, rgba(255, 120, 200, 0.22), transparent 55%),
+                  radial-gradient(900px 700px at 55% 90%, rgba(140, 255, 200, 0.18), transparent 60%),
+                  var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* Floating confetti dots */
+    .dots {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+      filter: blur(0.2px);
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.20) 0 2px, transparent 3px),
+        radial-gradient(circle at 65% 20%, rgba(255,255,255,0.18) 0 1.5px, transparent 3px),
+        radial-gradient(circle at 85% 70%, rgba(255,255,255,0.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 25% 80%, rgba(255,255,255,0.14) 0 1.5px, transparent 3px);
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to   { transform: translate3d(0,-10px,0) scale(1.03); }
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 18px 60px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(120,180,255,0.9), rgba(255,120,200,0.9)),
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), transparent 40%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .avatar::after {
+      content: "";
+      position: absolute;
+      inset: -40px;
+      background: conic-gradient(from 90deg, transparent, rgba(255,255,255,0.18), transparent);
+      animation: shine 4.5s linear infinite;
+    }
+    @keyframes shine {
+      to { transform: rotate(360deg); }
+    }
+
+    .brand h1 {
+      font-size: 18px;
+      margin: 0;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tagline {
+      font-size: 13px;
+      margin: 2px 0 0;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+    .chip:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22); }
+
+    .hero {
+      margin-top: 18px;
+      padding: 26px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(600px 220px at 10% 15%, rgba(120,180,255,0.20), transparent 60%),
+        radial-gradient(450px 220px at 75% 25%, rgba(255,120,200,0.18), transparent 60%),
+        radial-gradient(650px 260px at 55% 90%, rgba(140,255,200,0.14), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero h2 {
+      position: relative;
+      margin: 0 0 10px;
+      font-size: 28px;
+      letter-spacing: 0.2px;
+    }
+
+    .hero p {
+      position: relative;
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .mini {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+    }
+
+    .badge {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,0.26);
+      background: rgba(255,255,255,0.04);
+      font-size: 12px;
+      color: var(--text);
+      cursor: default;
+      user-select: none;
+      transform: translateZ(0);
+      animation: pop 1200ms ease both;
+    }
+    .badge:nth-child(2) { animation-delay: 80ms; }
+    .badge:nth-child(3) { animation-delay: 160ms; }
+    .badge:nth-child(4) { animation-delay: 240ms; }
+    .badge:nth-child(5) { animation-delay: 320ms; }
+
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(10px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .links { justify-content: flex-start; }
+      .hero h2 { font-size: 24px; }
+    }
+
+    .card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .card .hd {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .card .hd h3 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .card .bd {
+      padding: 16px;
+      color: var(--muted);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      font-size: 12px;
+      transition: transform 160ms ease;
+    }
+    .pill:hover { transform: translateY(-2px); }
+
+    .projects {
+      display: grid;
+      gap: 12px;
+    }
+
+    .project {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+    .project:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.24); }
+
+    .project .row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .project h4 {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .stack {
+      font-size: 12px;
+      color: rgba(255,255,255,0.68);
+      white-space: nowrap;
+    }
+
+    .project ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .project li {
+      margin: 6px 0;
+    }
+
+    .btnrow {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
+
+    .funfact {
+      display: grid;
+      gap: 10px;
+    }
+
+    .meter {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, rgba(120,180,255,0.9), rgba(255,120,200,0.9));
+      border-radius: 999px;
+      animation: fill 1200ms ease forwards;
+    }
+
+    @keyframes fill { to { width: var(--w); } }
+
+    footer {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.62);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .dots, .avatar::after, .badge, .bar { animation: none !important; }
+      .chip:hover, .pill:hover, .project:hover, .btn:hover { transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dots"></div>
+
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <h1>Rajveer Singh</h1>
+          <p class="tagline">Computer Programming & Analysis • Co-op Candidate • I build practical stuff 🚀</p>
+        </div>
+      </div>
+
+      <div class="links">
+        <a class="chip" href="https://github.com/yourusername" target="_blank" rel="noreferrer">🐙 GitHub</a>
+        <a class="chip" href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noreferrer">💼 LinkedIn</a>
+        <a class="chip" href="mailto:your.email@email.com">✉️ Email</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <h2>Hi! I’m Rajveer — I turn ideas into working apps.</h2>
+      <p>
+        I’m a Georgian College student focused on backend APIs, databases, and clean project structure.
+        I like building things that feel real (auth, CRUD, validation, testing), and I’m looking for a co-op where I can ship features and learn fast.
+      </p>
+
+      <div class="mini" aria-label="quick highlights">
+        <span class="badge">✅ REST APIs</span>
+        <span class="badge">✅ MongoDB</span>
+        <span class="badge">✅ Postman Testing</span>
+        <span class="badge">✅ Git & GitHub</span>
+        <span class="badge">✅ Team Projects</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="hd"><h3>Projects I’m proud of</h3><span style="color:rgba(255,255,255,0.65);font-size:12px;">(clickable links)</span></div>
+        <div class="bd">
+          <div class="projects">
+            <div class="project">
+              <div class="row">
+                <h4>Personal Expense Tracker</h4>
+                <span class="stack">Node.js • Express • MongoDB</span>
+              </div>
+              <ul>
+                <li>Built REST endpoints for users & expenses with validation and error handling.</li>
+                <li>Implemented analytics-style summaries (totals, categories) for quick insights.</li>
+                <li>Tested routes with Postman and documented expected vs received behavior.</li>
+              </ul>
+              <div class="btnrow">
+                <a class="btn" href="https://github.com/yourusername/expense-tracker" target="_blank" rel="noreferrer">🔗 Repo</a>
+                <a class="btn" href="#" onclick="alert('Add a demo link here when ready!'); return false;">▶️ Demo</a>
+              </div>
+            </div>
+
+            <div class="project">
+              <div class="row">
+                <h4>Fitness Tracker API</h4>
+                <span class="stack">Node.js • MongoDB</span>
+              </div>
+              <ul>
+                <li>Created CRUD routes for workouts and users using a clean controller structure.</li>
+                <li>Added middleware for consistent responses and safer request handling.</li>
+              </ul>
+              <div class="btnrow">
+                <a class="btn" href="https://github.com/yourusername/fitness-tracker-api" target="_blank" rel="noreferrer">🔗 Repo</a>
+              </div>
+            </div>
+
+            <div class="project">
+              <div class="row">
+                <h4>Lucky Number Android App</h4>
+                <span class="stack">Java • XML</span>
+              </div>
+              <ul>
+                <li>Built a simple Android app with input handling and clean UI layouts.</li>
+                <li>Practiced app structure, state handling, and user-friendly flows.</li>
+              </ul>
+              <div class="btnrow">
+                <a class="btn" href="https://github.com/yourusername/lucky-number-app" target="_blank" rel="noreferrer">🔗 Repo</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="hd"><h3>Skill Stack</h3><span style="color:rgba(255,255,255,0.65);font-size:12px;">(what I use)</span></div>
+        <div class="bd">
+          <div class="skills" aria-label="skills">
+            <span class="pill">JavaScript</span>
+            <span class="pill">Python</span>
+            <span class="pill">Java</span>
+            <span class="pill">C#</span>
+            <span class="pill">SQL</span>
+            <span class="pill">HTML/CSS</span>
+            <span class="pill">Node.js</span>
+            <span class="pill">Express</span>
+            <span class="pill">MongoDB</span>
+            <span class="pill">ASP.NET MVC</span>
+            <span class="pill">Postman</span>
+            <span class="pill">GitHub</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">Excel</span>
+          </div>
+
+          <div style="height:14px"></div>
+
+          <div class="funfact">
+            <div>
+              <div style="display:flex;justify-content:space-between;gap:10px;">
+                <strong style="color:var(--text);font-size:13px;">Debug Energy</strong>
+                <span style="color:rgba(255,255,255,0.65);font-size:12px;">high</span>
+              </div>
+              <div class="meter" aria-label="debug energy"><div class="bar" style="--w: 86%;"></div></div>
+            </div>
+
+            <div>
+              <div style="display:flex;justify-content:space-between;gap:10px;">
+                <strong style="color:var(--text);font-size:13px;">Teamwork Mode</strong>
+                <span style="color:rgba(255,255,255,0.65);font-size:12px;">always on</span>
+              </div>
+              <div class="meter" aria-label="teamwork mode"><div class="bar" style="--w: 92%;"></div></div>
+            </div>
+
+            <div>
+              <div style="display:flex;justify-content:space-between;gap:10px;">
+                <strong style="color:var(--text);font-size:13px;">Shipping Features</strong>
+                <span style="color:rgba(255,255,255,0.65);font-size:12px;">growing</span>
+              </div>
+              <div class="meter" aria-label="shipping features"><div class="bar" style="--w: 74%;"></div></div>
+            </div>
+          </div>
+
+          <div style="height:14px"></div>
+
+          <div style="padding:12px;border:1px solid rgba(255,255,255,0.12);border-radius:16px;background:rgba(0,0,0,0.18);">
+            <div style="color:var(--text);font-weight:700;">Quick Pitch</div>
+            <div style="margin-top:6px; color: var(--muted); font-size: 13px;">
+              I’m looking for a co-op where I can build APIs, work with databases, test features, and collaborate with a team.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      Built with ❤ and a lot of console.log • © 2026 Rajveer Singh
+    </footer>
+  </div>
+</body>
+</html>
