@@ -37,9 +37,9 @@
     }
 
     .topbar {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
-      justify-content: space-between;
       gap: 12px;
       padding: 14px 16px;
       border: 1px solid var(--border);
@@ -100,6 +100,7 @@
       flex-wrap: wrap;
       gap: 10px;
       justify-content: flex-end;
+      max-width: 100%;
     }
 
     .chip {
@@ -193,10 +194,80 @@
 
     @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 24px; }
+
+      
+      .topbar {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .brand { width: 100%; }
+
+      .tagline {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+      }
+
+      .links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+      .topbar { grid-template-columns: 1fr; }
       .links { justify-content: flex-start; }
       .hero h2 { font-size: 24px; }
-    }
+    
 
+    /* Phone-first fixes */
+    @media (max-width: 600px) {
+      .container { padding: 18px 14px 40px; }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .brand { width: 100%; }
+
+      .tagline {
+        white-space: normal;      /* allow wrapping on phones */
+        overflow: visible;
+        text-overflow: unset;
+      }
+
+      .links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .chip { width: fit-content; }
+
+      .hero { padding: 18px 14px; }
+      .hero h2 { font-size: 20px; }
+      .hero p { font-size: 14px; }
+
+      .card .bd { padding: 14px; }
+
+      .project .row {
+        flex-direction: column;   /* prevent title+stack overflow */
+        align-items: flex-start;
+      }
+
+      .stack {
+        white-space: normal;      /* wrap tech stack */
+      }
+
+      /* Break long words/URLs so nothing spills off-screen */
+      a, .pill, .stack, .project li, .hero p {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .hover-tab { max-width: 200px; }
+    }
     .card {
       border-radius: var(--radius);
       border: 1px solid var(--border);
@@ -228,6 +299,80 @@
     }
 
     .projects { display: grid; gap: 12px; }
+
+    /* Project carousel (mobile-friendly) */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .track {
+      display: flex;
+      gap: 12px;
+      will-change: transform;
+      transition: transform 280ms ease;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+    }
+
+    .carousel-nav {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .navbtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .navbtn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
+
+    .dotsnav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.10);
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      opacity: 1;
+      background: rgba(255,255,255,0.75);
+    }
+
+    @media (min-width: 901px) {
+      /* On desktop, show projects normally (no swipe needed) */
+      .carousel { overflow: visible; }
+      .track { display: grid; grid-template-columns: 1fr; transform: none !important; }
+      .slide { flex: initial; }
+      .carousel-nav { display: none; }
+    }
 
     .project {
       padding: 14px;
@@ -339,6 +484,63 @@
       .avatar::after, .badge { animation: none !important; }
       .chip:hover, .pill:hover, .project:hover, .btn:hover { transform: none !important; }
     }
+  
+    /* ===== Style upgrades (polish pass) ===== */
+    /* Accent glow on cards */
+    .card:hover {
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    /* Gradient underline for section headers */
+    .card .hd h3::after {
+      content: "";
+      display: block;
+      margin-top: 6px;
+      height: 2px;
+      width: 56px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(120,180,255,.9), rgba(255,120,200,.9));
+      opacity: .8;
+    }
+
+    /* Project media placeholder (drop-in image ready) */
+    .project .media {
+      margin: 10px 0 6px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(120,180,255,.18), rgba(255,120,200,.18));
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+    }
+    .project .media::after {
+      content: "Preview";
+      position: absolute;
+      inset: auto 10px 10px auto;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.22);
+    }
+
+    /* Carousel nav emphasis */
+    .navbtn {
+      backdrop-filter: blur(6px);
+    }
+    .dot { transition: transform 160ms ease, opacity 160ms ease; }
+    .dot.active { transform: scale(1.3); }
+
+    /* Buttons: subtle gradient on hover */
+    .btn:hover, .chip:hover {
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    }
+
+    /* Footer polish */
+    footer {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+
   </style>
 
   <script>
@@ -447,6 +649,117 @@
       // Create hover tab only after DOM is ready (prevents appendChild null errors)
       ensureHoverTab();
 
+      // --- Project carousel setup (mobile swipe) ---
+      const track = document.getElementById('projectTrack');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsNav = document.getElementById('dotsNav');
+
+      let slides = [];
+      let index = 0;
+      let startX = 0;
+      let currentX = 0;
+      let dragging = false;
+
+      function refreshSlides() {
+        slides = Array.from(track.querySelectorAll('.slide'));
+        // If we wrapped the old markup in one slide, split it: each .project becomes its own slide
+        const onlySlide = slides.length === 1 ? slides[0] : null;
+        if (onlySlide) {
+          const projects = Array.from(onlySlide.querySelectorAll('.project'));
+          if (projects.length > 1) {
+            track.innerHTML = '';
+            projects.forEach(p => {
+              const s = document.createElement('div');
+              s.className = 'slide';
+              s.appendChild(p);
+              track.appendChild(s);
+            });
+          }
+        }
+        slides = Array.from(track.querySelectorAll('.slide'));
+      }
+
+      function renderDots() {
+        dotsNav.innerHTML = '';
+        slides.forEach((_, i) => {
+          const d = document.createElement('div');
+          d.className = 'dot' + (i === index ? ' active' : '');
+          d.setAttribute('role', 'button');
+          d.setAttribute('aria-label', `Go to project ${i + 1}`);
+          d.addEventListener('click', () => goTo(i));
+          dotsNav.appendChild(d);
+        });
+      }
+
+      function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+      function goTo(i) {
+        index = clamp(i, 0, slides.length - 1);
+        track.style.transform = `translateX(${-index * 100}%)`;
+        renderDots();
+      }
+
+      function next() { goTo(index + 1); }
+      function prev() { goTo(index - 1); }
+
+      function onDown(clientX) {
+        dragging = true;
+        startX = clientX;
+        currentX = clientX;
+        track.style.transition = 'none';
+      }
+
+      function onMove(clientX) {
+        if (!dragging) return;
+        currentX = clientX;
+        const dx = currentX - startX;
+        // Move in px during drag for natural feel
+        const percent = (dx / track.clientWidth) * 100;
+        track.style.transform = `translateX(calc(${-index * 100}% + ${percent}%))`;
+      }
+
+      function onUp() {
+        if (!dragging) return;
+        dragging = false;
+        const dx = currentX - startX;
+        track.style.transition = 'transform 280ms ease';
+        const threshold = Math.max(40, track.clientWidth * 0.12);
+        if (dx < -threshold) next();
+        else if (dx > threshold) prev();
+        else goTo(index);
+      }
+
+      // Initialize
+      refreshSlides();
+      goTo(0);
+
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', prev);
+        nextBtn.addEventListener('click', next);
+      }
+
+      // Touch support
+      if (track) {
+        track.addEventListener('touchstart', (e) => onDown(e.touches[0].clientX), { passive: true });
+        track.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX), { passive: true });
+        track.addEventListener('touchend', onUp);
+      }
+
+      // Mouse drag (desktop trackpad / testing)
+      if (track) {
+        track.addEventListener('mousedown', (e) => { onDown(e.clientX); });
+        window.addEventListener('mousemove', (e) => onMove(e.clientX));
+        window.addEventListener('mouseup', onUp);
+      }
+
+      // Recalc on resize
+      window.addEventListener('resize', () => {
+        track.style.transition = 'none';
+        goTo(index);
+        track.style.transition = 'transform 280ms ease';
+      });
+
       // Console diagnostics
       runDiagnostics();
     });
@@ -459,23 +772,22 @@
         <div class="avatar" aria-hidden="true"></div>
         <div>
           <h1>Rajveer Singh</h1>
-          <p class="tagline">Computer Programming &amp; Analysis • Full‑Stack (Backend‑Focused) Co‑op • I build things that actually work 🚀</p>
+          <p class="tagline">Computer Programming &amp; Analysis • Full‑Stack • Co‑op Candidate • I build things that actually work 🚀</p>
         </div>
       </div>
 
       <div class="links">
-        <a class="chip" href="https://github.com/yourusername" target="_blank" rel="noreferrer">🐙 GitHub</a>
-        <a class="chip" href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noreferrer">💼 LinkedIn</a>
-        <a class="chip" href="#" onclick="copyEmail('your.email@email.com'); return false;">✉️ Copy Email</a>
+        <a class="chip" href="https://github.com/Rajveerrsingh" target="_blank" rel="noreferrer">🐙 GitHub</a>
+        <a class="chip" href="https://www.linkedin.com/in/rajveer-singh-a7b5182a6/" target="_blank" rel="noreferrer">💼 LinkedIn</a>
+        <a class="chip" href="resume/Rajveer_Singh_Resume.pdf" target="_blank" rel="noreferrer">📄 Resume</a>
+        <a class="chip" href="#" onclick="copyEmail('singh.rv2834@email.com'); return false;">✉️ Copy Email</a>
       </div>
     </div>
 
     <section class="hero">
       <h2>Hi, I’m Rajveer — builder first, student always.</h2>
       <p>
-        I’m a Computer Programming and Analysis student who enjoys working across the full stack, building complete features from idea to implementation.
-        I’m especially comfortable with backend APIs, databases, and application logic, while also enjoying frontend work that improves usability and user experience.
-        I’m actively seeking a co-op where I can contribute end-to-end, learn from real-world projects, and grow as a well-rounded developer.
+        I’m a Computer Programming and Analysis student who enjoys working across the full stack, building complete features from idea to implementation. I work with backend APIs, databases, and application logic, and I also enjoy frontend work that improves usability and user experience. I’m still exploring where I specialize best and excited to grow through real-world projects.
       </p>
 
       <div class="mini" aria-label="quick highlights">
@@ -484,57 +796,71 @@
         <span class="badge">Testing</span>
         <span class="badge">Team Projects</span>
       </div>
+
+      
     </section>
 
     <section class="grid">
       <div class="card">
         <div class="hd"><h3>Projects I’m proud of</h3><span style="color:rgba(255,255,255,0.65);font-size:12px;">(clickable links)</span></div>
         <div class="bd">
-          <div class="projects">
-            <div class="project" data-hover="REST API + MongoDB • CRUD • validation • tested with Postman">
-              <div class="row">
-                <h4>Personal Expense Tracker</h4>
-                <span class="stack">Node.js • Express • MongoDB</span>
+          <div class="carousel" aria-label="Project carousel">
+            <div class="track" id="projectTrack">
+              <div class="slide">
+                <div class="project" data-hover="REST API with validation and testing">
+                  <div class="row">
+                    <h4>Personal Expense Tracker</h4>
+                    <span class="stack">Node.js • Express • MongoDB</span>
+                  </div>
+                  <ul>
+                    <li>Built REST APIs for users and expenses with full CRUD operations.</li>
+                    <li>Implemented validation, error handling, and clean controller structure.</li>
+                    <li>Tested endpoints using Postman.</li>
+                  </ul>
+                  <div class="btnrow">
+                    <a class="btn" href="https://github.com/yourusername/expense-tracker" target="_blank">🔗 GitHub</a>
+                  </div>
+                </div>
               </div>
-              <ul>
-                <li>Built REST endpoints for users &amp; expenses with validation and error handling.</li>
-                <li>Implemented analytics-style summaries (totals, categories) for quick insights.</li>
-                <li>Tested routes with Postman and documented expected vs received behavior.</li>
-              </ul>
-              <div class="btnrow">
-                <a class="btn" href="https://github.com/yourusername/expense-tracker" target="_blank" rel="noreferrer">🔗 Repo</a>
-                <a class="btn" href="#" onclick="alert('Add a demo link here when ready!'); return false;">▶️ Demo</a>
+
+              <div class="slide">
+                <div class="project" data-hover="Backend API for workouts and users">
+                  <div class="row">
+                    <h4>Fitness Tracker API</h4>
+                    <span class="stack">Node.js • MongoDB</span>
+                  </div>
+                  <ul>
+                    <li>Designed backend APIs for workout and user management.</li>
+                    <li>Structured routes, middleware, and consistent responses.</li>
+                  </ul>
+                  <div class="btnrow">
+                    <a class="btn" href="https://github.com/yourusername/fitness-api" target="_blank">🔗 GitHub</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slide">
+                <div class="project" data-hover="Android app with simple UI logic">
+                  <div class="row">
+                    <h4>Lucky Number Android App</h4>
+                    <span class="stack">Java • Android</span>
+                  </div>
+                  <ul>
+                    <li>Built an Android app with user input and dynamic output.</li>
+                    <li>Focused on clean UI layout and basic app logic.</li>
+                  </ul>
+                  <div class="btnrow">
+                    <a class="btn" href="https://github.com/yourusername/lucky-number" target="_blank">🔗 GitHub</a>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div class="project" data-hover="API-focused project • clean controller structure • middleware">
-              <div class="row">
-                <h4>Fitness Tracker API</h4>
-                <span class="stack">Node.js • MongoDB</span>
-              </div>
-              <ul>
-                <li>Created CRUD routes for workouts and users using a clean controller structure.</li>
-                <li>Added middleware for consistent responses and safer request handling.</li>
-              </ul>
-              <div class="btnrow">
-                <a class="btn" href="https://github.com/yourusername/fitness-tracker-api" target="_blank" rel="noreferrer">🔗 Repo</a>
-              </div>
-            </div>
-
-            <div class="project" data-hover="Android app • user input • UI layouts">
-              <div class="row">
-                <h4>Lucky Number Android App</h4>
-                <span class="stack">Java • XML</span>
-              </div>
-              <ul>
-                <li>Built a simple Android app with input handling and clean UI layouts.</li>
-                <li>Practiced app structure, state handling, and user-friendly flows.</li>
-              </ul>
-              <div class="btnrow">
-                <a class="btn" href="https://github.com/yourusername/lucky-number-app" target="_blank" rel="noreferrer">🔗 Repo</a>
-              </div>
-            </div>
-
+          <div class="carousel-nav" aria-label="carousel navigation">
+            <button class="navbtn" type="button" id="prevBtn" aria-label="Previous project">◀</button>
+            <div class="dotsnav" id="dotsNav" aria-label="Project dots"></div>
+            <button class="navbtn" type="button" id="nextBtn" aria-label="Next project">▶</button>
           </div>
         </div>
       </div>
