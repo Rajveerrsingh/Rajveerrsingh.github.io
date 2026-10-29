@@ -3,27 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Rajveer Singh is a junior software developer in Barrie, Ontario. He builds REST APIs and web applications with JavaScript, Node.js, Express, and related tools, and is seeking a full-time role." />
+  <meta name="description" content="Rajveer Singh is a junior software developer in Barrie, Ontario, building REST APIs, web apps, and Android software. Open to full-time roles." />
   <meta name="color-scheme" content="light" />
   <title>Rajveer Singh | Junior Software Developer</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f5c59'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Segoe UI,sans-serif' font-size='13' font-weight='700' fill='white'%3ERS%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3ead7'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='%231a120e' stroke-width='2'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='16' fill='%239f1d18'%3ER%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
   <style>
     :root {
-      --bg: #f3f0ea;
-      --surface: #fffcf8;
-      --ink: #15202b;
-      --muted: #3e4c5e;
-      --line: #e2dbd1;
-      --accent: #0f5c59;
-      --accent-dark: #0b4a47;
-      --soft: #e7f2f1;
-      --navy: #15283a;
-      --navy-2: #1d354c;
-      --shadow: 0 16px 40px rgba(21, 32, 43, 0.06);
-      --radius: 18px;
-      --header: 4.5rem;
-      --max: 1080px;
-      --focus: #0f5c59;
+      --paper: #f3ead7;
+      --paper-2: #fff8ec;
+      --ink: #1a120e;
+      --muted: #4a3d34;
+      --line: #d9cbb8;
+      --red: #9f1d18;
+      --red-deep: #7a1612;
+      --forest: #1e4a34;
+      --amber: #e7b15a;
+      --term: #1c1612;
+      --term-text: #f6edd8;
+      --header: 4.6rem;
+      --shadow: 8px 8px 0 var(--ink);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -33,20 +35,20 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: var(--bg);
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-      font-size: 1.0625rem;
-      line-height: 1.6;
+      background:
+        radial-gradient(900px 420px at 0% -10%, rgba(159, 29, 24, 0.08), transparent 55%),
+        radial-gradient(700px 380px at 100% 0%, rgba(30, 74, 52, 0.07), transparent 50%),
+        var(--paper);
+      font-family: Outfit, "Segoe UI", system-ui, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      font-synthesis: none;
     }
 
-    img { max-width: 100%; }
-
-    a { color: var(--accent-dark); }
-
-    a:hover { color: var(--accent); }
+    a { color: var(--forest); }
 
     :focus-visible {
-      outline: 3px solid var(--focus);
+      outline: 3px solid var(--red);
       outline-offset: 3px;
     }
 
@@ -54,28 +56,31 @@
       position: absolute;
       left: 1rem;
       top: 0;
-      transform: translateY(-120%);
-      background: var(--navy);
-      color: #fff;
-      padding: 0.75rem 1rem;
-      border-radius: 0 0 10px 10px;
-      z-index: 20;
+      transform: translateY(-140%);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.7rem 1rem;
+      z-index: 30;
       text-decoration: none;
     }
 
     .skip:focus { transform: none; }
 
+    .rail {
+      display: none;
+    }
+
     .wrap {
-      width: min(var(--max), calc(100% - 2rem));
+      width: min(1080px, calc(100% - 2rem));
       margin-inline: auto;
     }
 
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(243, 240, 234, 0.92);
-      backdrop-filter: blur(12px);
+      z-index: 20;
+      background: rgba(243, 234, 215, 0.92);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
     }
 
@@ -84,78 +89,132 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem 1.5rem;
-      padding: 0.75rem 0;
+      gap: 0.75rem 1.25rem;
+      padding: 0.65rem 0;
     }
 
     .logo {
       color: var(--ink);
       text-decoration: none;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
     }
 
-    .logo span {
-      color: var(--accent);
-    }
+    .logo em { font-style: italic; color: var(--red); }
 
     .nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.25rem 0.35rem;
+      gap: 0.15rem;
     }
 
     .nav a {
       color: var(--ink);
       text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 0.55rem 0.75rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.45rem 0.6rem;
       border-radius: 999px;
     }
 
-    .nav a:hover { background: rgba(15, 92, 89, 0.08); }
+    .nav a:hover { background: rgba(26, 18, 14, 0.06); }
 
-    .hero { padding: 3.5rem 0 2.5rem; }
+    .key {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 44px;
+      padding: 0.35rem 0.7rem 0.35rem 0.4rem;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
 
-    .eyebrow {
-      margin: 0 0 0.75rem;
-      color: var(--accent-dark);
+    .key:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+
+    kbd {
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
       font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      padding: 0.15rem 0.4rem;
+      min-width: 1.4rem;
+      text-align: center;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem 2.5rem;
+      align-items: end;
+      padding: 2.6rem 0 1rem;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 -1rem;
+      background-image:
+        linear-gradient(to right, rgba(26, 18, 14, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(26, 18, 14, 0.045) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(#000 0%, transparent 92%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .kicker {
+      margin: 0 0 0.8rem;
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: var(--red);
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.6rem, 6vw, 4.6rem);
-      line-height: 0.98;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: clamp(4rem, 8vw, 6.6rem);
+      line-height: 0.84;
       letter-spacing: -0.045em;
-      font-weight: 700;
     }
 
-    .title-role {
-      margin: 0.7rem 0 0;
-      font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-      letter-spacing: -0.03em;
-      font-weight: 600;
-      color: var(--navy);
+    h1 em {
+      font-style: italic;
+      font-weight: 560;
+      color: var(--red);
+    }
+
+    .hero-role {
+      margin: 1rem 0 0;
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .pitch {
-      max-width: 42rem;
+      max-width: 38rem;
       margin: 1rem 0 0;
       color: var(--muted);
-      font-size: 1.15rem;
+      font-size: 1.12rem;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.75rem;
+      gap: 0.7rem;
+      margin-top: 1.4rem;
     }
 
     .btn {
@@ -163,322 +222,485 @@
       align-items: center;
       justify-content: center;
       min-height: 44px;
-      padding: 0.65rem 1.05rem;
-      border-radius: 12px;
-      border: 1px solid transparent;
+      padding: 0.6rem 0.95rem;
+      border: 1px solid var(--ink);
       text-decoration: none;
-      font-weight: 700;
-      font-size: 0.98rem;
-      line-height: 1;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--paper-2);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: var(--red);
       color: #fff;
+      border-color: var(--red-deep);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
-    .btn-primary:hover {
-      background: var(--accent-dark);
-      color: #fff;
+    .btn:hover, .btn:focus-visible {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--ink);
-      border-color: #cfc6ba;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent-dark);
-      background: var(--soft);
-    }
+    .btn-primary:hover { background: var(--red-deep); color: #fff; }
 
     .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
-      margin-top: 1.5rem;
+      gap: 0.45rem 1.1rem;
+      margin: 1.1rem 0 0;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
-    .meta strong { color: var(--ink); font-weight: 700; }
+    .meta strong { color: var(--ink); }
 
-    main { padding-bottom: 4rem; }
-
-    section { scroll-margin-top: calc(var(--header) + 1rem); }
-
-    .section {
-      padding-top: 1rem;
-    }
-
-    .section-head {
+    .terminal {
+      background: var(--term);
+      color: var(--term-text);
+      border: 1px solid var(--ink);
+      box-shadow: 10px 10px 0 var(--red);
+      min-height: 280px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0.35rem;
-      margin: 2.75rem 0 1.1rem;
     }
+
+    .term-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.7rem 0.85rem;
+      border-bottom: 1px solid rgba(246, 237, 216, 0.16);
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .dots { display: flex; gap: 0.35rem; }
+    .dots i {
+      width: 0.62rem;
+      height: 0.62rem;
+      border-radius: 50%;
+      background: #5c5148;
+      display: block;
+    }
+    .dots i:nth-child(1) { background: #c4554a; }
+    .dots i:nth-child(2) { background: var(--amber); }
+    .dots i:nth-child(3) { background: #7d9a78; }
+
+    .term-file { color: #d9cfc2; margin-left: 0.35rem; }
+
+    .term-body {
+      margin: 0;
+      padding: 1rem 1rem 0.5rem;
+      flex: 1;
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .c-key { color: var(--amber); }
+    .c-str { color: #f3d7a1; }
+    .c-com { color: #d5e3d0; }
+
+    .mono {
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    .caret {
+      display: inline-block;
+      width: 0.55ch;
+      height: 1em;
+      background: var(--amber);
+      transform: translateY(2px);
+      animation: blink 1.05s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .term-status {
+      margin: 0;
+      padding: 0.7rem 1rem;
+      border-top: 1px solid rgba(246, 237, 216, 0.16);
+      color: #d5cbbd;
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.75rem;
+    }
+
+    main { padding-bottom: 3.5rem; }
+
+    section { scroll-margin-top: calc(var(--header) + 0.75rem); }
+
+    .section-head { margin: 3.2rem 0 1rem; }
 
     h2 {
       margin: 0;
-      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: clamp(2rem, 4vw, 3rem);
       letter-spacing: -0.03em;
-      line-height: 1.15;
+      line-height: 1;
+    }
+
+    .num {
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--red);
+      letter-spacing: 0.14em;
+      margin-right: 0.55rem;
+      font-style: normal;
     }
 
     .section-note {
-      margin: 0;
-      max-width: 36rem;
+      max-width: 40rem;
+      margin: 0.7rem 0 0;
       color: var(--muted);
-      font-size: 0.98rem;
     }
 
-    .featured {
+    .feature {
       display: grid;
-      grid-template-columns: minmax(220px, 0.85fr) 1.4fr;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+      grid-template-columns: minmax(220px, 0.8fr) 1.2fr;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
       box-shadow: var(--shadow);
-      overflow: hidden;
     }
 
-    .featured-aside {
-      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
-      color: #f4f7f8;
-      padding: 1.5rem 1.4rem 1.6rem;
+    .feature-mark {
+      background: var(--term);
+      color: var(--term-text);
+      padding: 1.35rem 1.25rem 1.4rem;
     }
 
-    .kicker {
-      margin: 0;
-      color: #b7ddd9;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .featured-aside h3 {
-      margin: 0.55rem 0 0.35rem;
-      font-size: 2rem;
+    .feature-mark h3 {
+      margin: 0.35rem 0 0.3rem;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: 2.4rem;
       letter-spacing: -0.04em;
-      line-height: 1.05;
+      line-height: 0.95;
     }
 
-    .featured-aside p {
-      margin: 0;
-      color: #d5e2ea;
-    }
+    .feature-mark p { margin: 0; color: #ddd4c6; }
 
-    .flow {
+    .layers {
       display: flex;
       flex-wrap: wrap;
       gap: 0.35rem;
-      margin: 1.25rem 0 0;
+      margin: 1.1rem 0 0;
       padding: 0;
       list-style: none;
     }
 
-    .flow li {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+    .layers li {
+      border: 1px solid rgba(246, 237, 216, 0.28);
       border-radius: 999px;
-      padding: 0.25rem 0.6rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.01em;
+      padding: 0.2rem 0.55rem;
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.72rem;
+      color: #f3d7a1;
     }
 
-    .featured-body { padding: 1.5rem 1.5rem 1.4rem; }
+    .feature-body { padding: 1.3rem 1.3rem 1.2rem; }
 
-    .featured-body ul,
-    .project ul,
-    .role ul {
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0 0 0.85rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+      background: rgba(159, 29, 24, 0.08);
+      color: var(--red-deep);
+      padding: 0.18rem 0.45rem;
+    }
+
+    .feature-body ul.plain,
+    .job ul {
       margin: 0;
-      padding-left: 1.15rem;
+      padding-left: 1.1rem;
     }
 
-    .featured-body li,
-    .project li,
-    .role li { margin: 0.4rem 0; }
+    .feature-body li,
+    .job li { margin: 0.35rem 0; }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
       margin-top: 1rem;
     }
 
-    .project,
-    .panel,
-    .role {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .rows { border-top: 1px solid var(--ink); margin-top: 1.15rem; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 4.2rem 1fr auto;
+      gap: 0.8rem 1.2rem;
+      align-items: start;
+      padding: 1.15rem 0.2rem;
+      border-bottom: 1px solid var(--ink);
+      transition: background 160ms ease, color 160ms ease, padding 160ms ease;
     }
 
-    .project { padding: 1.25rem 1.2rem 1.2rem; }
+    .row:hover, .row:focus-within {
+      background: var(--ink);
+      color: var(--paper);
+    }
 
-    .project h3,
-    .role h3,
-    .edu h3 {
+    .feature { transition: transform 180ms ease; }
+    .feature:hover { transform: translate(-3px, -3px); }
+
+    .idx {
+      margin: 0.15rem 0 0;
+      font-family: Fraunces, Georgia, serif;
+      font-style: italic;
+      font-size: 1.7rem;
+      line-height: 1;
+      color: var(--red);
+    }
+
+    .row h3 {
       margin: 0;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: 1.55rem;
+      letter-spacing: -0.03em;
     }
 
-    .stack {
+    .row p { margin: 0.35rem 0 0; color: var(--muted); }
+
+    .row:hover p, .row:focus-within p { color: #ddd4c6; }
+
+    .row .tags { margin-top: 0.7rem; }
+
+    .row:hover .tags li, .row:focus-within .tags li {
+      background: rgba(231, 177, 90, 0.16);
+      color: var(--amber);
+    }
+
+    .row-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin: 0.75rem 0 0.9rem;
-      padding: 0;
-      list-style: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.2rem;
     }
 
-    .featured-body .stack,
-    .project .stack {
-      padding-left: 0;
-    }
-
-    .stack li {
-      margin: 0;
-      background: var(--soft);
-      color: var(--accent-dark);
-      border-radius: 999px;
-      padding: 0.2rem 0.55rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .text-link {
+    .row-links a {
       display: inline-flex;
       align-items: center;
       min-height: 44px;
-      margin-top: 0.35rem;
-      font-weight: 700;
+      font-weight: 600;
+      color: var(--forest);
     }
+
+    .row:hover .row-links a,
+    .row:focus-within .row-links a { color: var(--amber); }
+
+    .rule {
+      display: block;
+      height: 2px;
+      width: 2.5rem;
+      margin-top: 0.45rem;
+      background: var(--red);
+      transform: scaleX(0.35);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .row:hover .rule, .row:focus-within .rule { transform: scaleX(1); }
 
     .skill-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
-    .panel { padding: 1.15rem 1.15rem 1.2rem; }
+    .panel {
+      border-top: 2px solid var(--ink);
+      padding-top: 0.7rem;
+    }
 
     .panel h3 {
-      margin: 0 0 0.75rem;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
+      margin: 0 0 0.45rem;
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent-dark);
+      color: var(--red);
     }
 
-    .panel ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+    .panel ul { margin: 0; padding: 0; list-style: none; }
 
     .panel li {
-      padding: 0.38rem 0;
-      border-top: 1px solid var(--line);
+      padding: 0.32rem 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .roles { display: grid; gap: 1rem; }
+    .jobs { display: grid; gap: 0.9rem; }
 
-    .role { padding: 1.3rem 1.3rem 1.15rem; }
-
-    .role-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: baseline;
-      margin-bottom: 0.35rem;
+    .job {
+      display: grid;
+      grid-template-columns: 9.5rem 1fr;
+      gap: 0.4rem 1.2rem;
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--ink);
     }
 
-    .dates {
+    .job h3 {
       margin: 0;
-      color: var(--muted);
-      font-weight: 600;
-      white-space: nowrap;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: 1.45rem;
     }
 
-    .company {
-      margin: 0 0 0.75rem;
-      color: var(--muted);
+    .when {
+      margin: 0;
+      font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+      font-size: 0.82rem;
+      color: var(--red);
     }
+
+    .company { margin: 0.15rem 0 0.55rem; color: var(--muted); }
 
     .transfer {
-      margin: 0.9rem 0 0;
-      padding-top: 0.8rem;
-      border-top: 1px solid var(--line);
+      margin: 0.75rem 0 0;
       color: var(--muted);
     }
 
     .edu {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.3rem;
+      border-top: 1px solid var(--ink);
+      padding-top: 0.9rem;
     }
 
-    .edu p { margin: 0.35rem 0 0; color: var(--muted); }
+    .edu h3 {
+      margin: 0;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+    }
 
-    .contact-grid {
+    .edu p { margin: 0.3rem 0 0; color: var(--muted); }
+
+    .contact-block {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 1rem;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 1.5rem;
+      border-top: 1px solid var(--ink);
+      padding-top: 1rem;
     }
 
-    address {
-      font-style: normal;
-      background: var(--navy);
-      color: #e7eef3;
-      border-radius: var(--radius);
-      padding: 1.4rem;
+    .big-mail {
+      display: inline-block;
+      margin-top: 0.35rem;
+      font-family: Fraunces, Georgia, serif;
+      font-style: italic;
+      font-weight: 560;
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.12em;
     }
 
-    address h2 { color: #fff; }
+    .big-mail:hover { color: var(--red); }
 
-    address p { margin: 0.7rem 0 0; color: #d5e0e8; }
+    address { font-style: normal; }
 
     .contact-links {
-      display: grid;
-      gap: 0.65rem;
-      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+      margin-top: 0.9rem;
     }
 
     .contact-links a {
-      color: #fff;
-      font-weight: 700;
-      text-underline-offset: 0.18em;
+      font-weight: 600;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
-    .contact-links a:hover { color: #b7ddd9; }
+    .aside h3 {
+      margin: 0 0 0.4rem;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+    }
 
-    .aside-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.4rem;
+    .aside p { margin: 0; color: var(--muted); }
+
+    footer {
+      border-top: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1rem 0 1.2rem;
+      font-size: 0.92rem;
+    }
+
+    footer kbd { color: var(--ink); }
+
+    dialog {
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      padding: 1.2rem 1.2rem 1rem;
+      width: min(26rem, calc(100% - 2rem));
       box-shadow: var(--shadow);
     }
 
-    .aside-card h3 { margin: 0 0 0.5rem; }
+    dialog::backdrop { background: rgba(26, 18, 14, 0.45); }
 
-    .aside-card p { margin: 0; color: var(--muted); }
+    dialog h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 1.25rem 0 2rem;
-      color: var(--muted);
-      font-size: 0.92rem;
+    .keys { margin: 0; padding: 0; list-style: none; }
+
+    .keys li { border-top: 1px solid var(--line); }
+
+    .keys a, .keys span {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 44px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .keys a:hover { color: var(--red); }
+
+    .dialog-close {
+      margin-top: 0.8rem;
+      min-height: 44px;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
     }
 
     .sr-only {
@@ -493,159 +715,250 @@
       border: 0;
     }
 
-    @media (max-width: 900px) {
-      .featured,
-      .project-grid,
-      .skill-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head { align-items: flex-start; }
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 560ms ease, transform 560ms ease;
     }
 
-    @media (max-width: 720px) {
-      .header-inner { align-items: flex-start; flex-direction: column; gap: 0.35rem; }
-      .hero { padding-top: 2.2rem; }
-      .role-top { flex-direction: column; gap: 0.15rem; }
-      .dates { white-space: normal; }
-      .nav a { padding: 0.45rem 0.55rem; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (min-width: 980px) {
+      .rail {
+        display: flex;
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: 3.1rem;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid var(--line);
+        z-index: 15;
+        background: rgba(243, 234, 215, 0.9);
+      }
+
+      .rail span {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      body { padding-left: 3.1rem; }
+    }
+
+    @media (max-width: 979px) {
+      .hero, .feature, .skill-grid, .contact-block { grid-template-columns: 1fr; }
+      .terminal { min-height: 0; }
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+      .logo { grid-column: 1; grid-row: 1; }
+      .key { grid-column: 2; grid-row: 1; justify-self: end; }
+      .nav { grid-column: 1 / -1; grid-row: 2; }
+      .row, .job { grid-template-columns: 1fr; }
+      .row-links { flex-direction: row; align-items: center; flex-wrap: wrap; }
+      h1 { font-size: clamp(3.3rem, 16vw, 4.6rem); }
+      .hero { padding-top: 1.6rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      * { transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      .caret, .key, .btn, .row, .rule, .feature { animation: none; transition: none; }
+      .feature:hover { transform: none; }
+      .key:hover, .btn:hover, .btn:focus-visible { transform: none; }
     }
 
     @media print {
-      .site-header, .skip, .actions { display: none; }
-      body { background: #fff; }
-      .featured-aside { background: #fff; color: #000; }
-      .featured-aside p, .kicker { color: #000; }
-      address { background: #fff; color: #000; }
-      address h2, .contact-links a { color: #000; }
-      a { text-decoration: underline; }
+      .site-header, .rail, .skip, .terminal, .key, footer { display: none; }
+      body { padding: 0; background: #fff; }
+      .feature, .row:hover { box-shadow: none; background: #fff; color: #000; }
     }
   </style>
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
+  <div class="rail" aria-hidden="true"><span>Barrie, Ontario · Open to full-time roles</span></div>
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="logo" href="#top">Rajveer <span>Singh</span></a>
+      <a class="logo" href="#top">Rajveer <em>Singh</em></a>
       <nav class="nav" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
+        <a href="#projects" aria-keyshortcuts="1">Projects</a>
+        <a href="#skills" aria-keyshortcuts="2">Skills</a>
+        <a href="#experience" aria-keyshortcuts="3">Experience</a>
+        <a href="#education" aria-keyshortcuts="4">Education</a>
+        <a href="#contact" aria-keyshortcuts="5">Contact</a>
       </nav>
+      <button class="key" type="button" aria-haspopup="dialog" aria-controls="shortcuts" aria-keyshortcuts="?">
+        <kbd>?</kbd> <span>Shortcuts</span>
+      </button>
     </div>
   </header>
 
-  <div class="wrap hero" id="top">
-    <p class="eyebrow">Barrie, Ontario</p>
-    <h1>Rajveer Singh</h1>
-    <p class="title-role">Junior Software Developer</p>
-    <p class="pitch">
-      Computer Programming &amp; Analysis graduate who builds REST APIs and web applications with JavaScript, Node.js, and layered, tested backend code.
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="resume/Rajveer_resume.pdf" download>Resume</a>
-      <a class="btn btn-secondary" href="https://github.com/Rajveerrsingh" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
-      <a class="btn btn-secondary" href="https://www.linkedin.com/in/rajveer-singh-a7b5182a6" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
-      <a class="btn btn-secondary" href="mailto:rvrajveer14@gmail.com">Email</a>
-    </div>
-    <p class="meta">
-      <span><strong>Open to</strong> full-time junior software developer roles</span>
-      <span><strong>Phone</strong> <a href="tel:+14379731985">+1 (437) 973-1985</a></span>
-    </p>
-  </div>
-
   <main id="content">
     <div class="wrap">
-      <section class="section" id="projects" aria-labelledby="projects-heading">
-        <div class="section-head">
-          <h2 id="projects-heading">Projects</h2>
-          <p class="section-note">Selected work across APIs, Android, and responsive web pages.</p>
+      <section class="hero" id="top" aria-labelledby="hero-name">
+        <div>
+          <p class="kicker">Barrie, Ontario</p>
+          <h1 id="hero-name">Rajveer<br /><em>Singh</em></h1>
+          <p class="hero-role">Junior Software Developer</p>
+          <p class="pitch">
+            Computer Programming &amp; Analysis graduate who builds REST APIs and web applications with JavaScript, Node.js, and layered, tested backend code.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="resume/Rajveer_resume.pdf" download>Resume</a>
+            <a class="btn" href="https://github.com/Rajveerrsingh" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" href="https://www.linkedin.com/in/rajveer-singh-a7b5182a6" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" href="mailto:rvrajveer14@gmail.com">Email</a>
+          </div>
+          <p class="meta">
+            <span><strong>Open to</strong> full-time junior software developer roles</span>
+            <span><strong>Phone</strong> <a href="tel:+14379731985">+1 (437) 973-1985</a></span>
+          </p>
         </div>
 
-        <article class="featured">
-          <div class="featured-aside">
+        <div class="terminal">
+          <div class="term-bar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="term-file">rajveer.js</span>
+          </div>
+          <pre class="term-body"><code id="intro-code"></code><span class="caret" aria-hidden="true"></span></pre>
+          <p class="term-status">barrie, on — seeking full-time</p>
+        </div>
+        <template id="intro-final">
+<span class="c-key">const</span> rajveer = {
+  role: <span class="c-str">"Junior Software Developer"</span>,
+  based: <span class="c-str">"Barrie, ON"</span>,
+  seeking: <span class="c-str">"full-time"</span>
+};
+
+rajveer.seeking;
+<span class="c-com">// "full-time"</span></template>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-heading">
+        <div class="section-head">
+          <h2 id="projects-heading"><span class="num">01</span>Projects</h2>
+          <p class="section-note">Public repositories, described from the code. Live demos are linked only where a page is published.</p>
+        </div>
+
+        <article class="feature reveal">
+          <div class="feature-mark">
             <p class="kicker">Featured</p>
             <h3>TaskFlow</h3>
-            <p>Task and issue tracker</p>
-            <ul class="flow" aria-label="API layers">
+            <p>Task and issue tracker. The board talks to the API. The API is the product.</p>
+            <ul class="layers" aria-label="API layers">
               <li>Routes</li>
               <li>Controllers</li>
               <li>Services</li>
               <li>Repositories</li>
             </ul>
           </div>
-          <div class="featured-body">
-            <ul class="stack" aria-label="TaskFlow technologies">
+          <div class="feature-body">
+            <ul class="tags" aria-label="TaskFlow technologies">
               <li>Node.js</li>
               <li>Express</li>
               <li>Zod</li>
               <li>MongoDB</li>
             </ul>
-            <ul>
-              <li>Built a REST API for tracking tasks and issues, split into routes, controllers, services, and repositories.</li>
-              <li>Validated requests with Zod and returned failures through one centralized JSON error handler.</li>
-              <li>Stored records in memory or in MongoDB.</li>
-              <li>Covered the API with 18 tests and paired it with a responsive board UI.</li>
+            <ul class="plain">
+              <li>REST API to list, create, read, update, and delete tasks, with filter, search, and sort.</li>
+              <li>Zod validation and one JSON error handler. Storage is in memory, or MongoDB when a URI is set.</li>
+              <li>Eighteen API tests run against the in-memory repository.</li>
+              <li>A board and list in the browser. Creates, edits, moves, and deletes go through the API.</li>
             </ul>
-            <a class="text-link" href="https://github.com/Rajveerrsingh/Taskflow" target="_blank" rel="noopener noreferrer">View on GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            <div class="link-row">
+              <a class="btn" href="https://github.com/Rajveerrsingh/Taskflow" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
           </div>
         </article>
 
-        <div class="project-grid">
-          <article class="project">
-            <h3>Personal Expense Tracker API</h3>
-            <ul class="stack" aria-label="Personal Expense Tracker API technologies">
-              <li>Node.js</li>
-              <li>Express</li>
-              <li>MongoDB</li>
-            </ul>
-            <ul>
-              <li>REST API with create, read, update, and delete operations for users and expenses.</li>
-              <li>Input validation, error handling, and an MVC structure.</li>
-            </ul>
+        <div class="rows">
+          <article class="row reveal">
+            <p class="idx">02</p>
+            <div>
+              <h3>Apex</h3>
+              <span class="rule" aria-hidden="true"></span>
+              <p>A 2D Unity game. The hero moves and aims. Enemies patrol, charge, or shoot. The project includes health, score, a main menu, and a level exit. A WebGL build is published.</p>
+              <ul class="tags" aria-label="Apex technologies">
+                <li>C#</li>
+                <li>Unity</li>
+              </ul>
+            </div>
+            <div class="row-links">
+              <a href="https://rajveerrsingh.github.io/Apex/" target="_blank" rel="noopener noreferrer">Live demo<span class="sr-only"> (opens in a new tab)</span></a>
+              <a href="https://github.com/Rajveerrsingh/Apex" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
           </article>
 
-          <article class="project">
-            <h3>Expense Tracker Android App</h3>
-            <ul class="stack" aria-label="Expense Tracker Android App technologies">
-              <li>Java</li>
-              <li>Android SDK</li>
-              <li>Gradle</li>
-            </ul>
-            <ul>
-              <li>Native Android app for logging expenses, organizing them into categories, and monitoring budgets.</li>
-            </ul>
-            <a class="text-link" href="https://github.com/Rajveerrsingh/Expense-Tracker-App" target="_blank" rel="noopener noreferrer">View on GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+          <article class="row reveal">
+            <p class="idx">03</p>
+            <div>
+              <h3>Fitness Tracker API</h3>
+              <span class="rule" aria-hidden="true"></span>
+              <p>Express and MongoDB API. Register and log in with JWT, then create, read, update, and delete workouts, exercises, goals, and daily metrics on protected routes. Swagger UI is at <span class="mono">/api-docs</span>. Auth attempts are rate-limited.</p>
+              <ul class="tags" aria-label="Fitness Tracker API technologies">
+                <li>Node.js</li>
+                <li>Express</li>
+                <li>MongoDB</li>
+                <li>JWT</li>
+              </ul>
+            </div>
+            <div class="row-links">
+              <a href="https://github.com/Rajveerrsingh/fitness-tracker-api" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
           </article>
 
-          <article class="project">
-            <h3>FitVerse Fitness E-Commerce Website</h3>
-            <ul class="stack" aria-label="FitVerse technologies">
-              <li>HTML</li>
-              <li>CSS</li>
-            </ul>
-            <ul>
-              <li>Multi-page responsive site for browsing fitness products, with semantic HTML and custom CSS.</li>
-            </ul>
-            <a class="text-link" href="https://github.com/Rajveerrsingh/FitVerse-website-" target="_blank" rel="noopener noreferrer">View on GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+          <article class="row reveal">
+            <p class="idx">04</p>
+            <div>
+              <h3>Sneaker Showcase</h3>
+              <span class="rule" aria-hidden="true"></span>
+              <p>React app with a list of sneakers and a detail page for the one you select. Routing is React Router, styling is CSS, and the build is on GitHub Pages.</p>
+              <ul class="tags" aria-label="Sneaker Showcase technologies">
+                <li>React</li>
+                <li>React Router</li>
+                <li>CSS</li>
+              </ul>
+            </div>
+            <div class="row-links">
+              <a href="https://rajveerrsingh.github.io/sneaker-showcase/" target="_blank" rel="noopener noreferrer">Live demo<span class="sr-only"> (opens in a new tab)</span></a>
+              <a href="https://github.com/Rajveerrsingh/sneaker-showcase" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="row reveal">
+            <p class="idx">05</p>
+            <div>
+              <h3>Expense Tracker</h3>
+              <span class="rule" aria-hidden="true"></span>
+              <p>Android app. The main screen takes an expense name and amount, lists the entries, removes one on tap, and calculates the total.</p>
+              <ul class="tags" aria-label="Expense Tracker technologies">
+                <li>Java</li>
+                <li>Android SDK</li>
+                <li>Gradle</li>
+              </ul>
+            </div>
+            <div class="row-links">
+              <a href="https://github.com/Rajveerrsingh/Expense-Tracker-App" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
           </article>
         </div>
       </section>
 
-      <section class="section" id="skills" aria-labelledby="skills-heading">
+      <section id="skills" aria-labelledby="skills-heading">
         <div class="section-head">
-          <h2 id="skills-heading">Skills</h2>
+          <h2 id="skills-heading"><span class="num">02</span>Skills</h2>
         </div>
-        <div class="skill-grid">
+        <div class="skill-grid reveal">
           <div class="panel">
             <h3>Languages</h3>
             <ul>
@@ -686,66 +999,67 @@
         </div>
       </section>
 
-      <section class="section" id="experience" aria-labelledby="experience-heading">
+      <section id="experience" aria-labelledby="experience-heading">
         <div class="section-head">
-          <h2 id="experience-heading">Experience</h2>
+          <h2 id="experience-heading"><span class="num">03</span>Experience</h2>
           <p class="section-note">Retail leadership built the habits I use on a software team: clear communication, training others, and owning the result.</p>
         </div>
-        <div class="roles">
-          <article class="role">
-            <div class="role-top">
+        <div class="jobs">
+          <article class="job reveal">
+            <p class="when">Jul 2025 – Present</p>
+            <div>
               <h3>Sales Lead</h3>
-              <p class="dates">Jul 2025 – Present</p>
+              <p class="company">Famous Footwear</p>
+              <ul>
+                <li>Supervise daily store operations and delegate work across a team of 8 or more, including peak periods.</li>
+                <li>Train new hires on point-of-sale systems and procedures, and resolve escalated customer issues under time pressure.</li>
+              </ul>
+              <p class="transfer">This carries into software work: coordinating people, explaining a process clearly, and staying accurate when the day gets busy.</p>
             </div>
-            <p class="company">Famous Footwear</p>
-            <ul>
-              <li>Supervise daily store operations and delegate work across a team of 8 or more, including peak periods.</li>
-              <li>Train new hires on point-of-sale systems and procedures, and resolve escalated customer issues under time pressure.</li>
-            </ul>
-            <p class="transfer">This carries into software work: coordinating people, explaining a process clearly, and staying accurate when the day gets busy.</p>
           </article>
-
-          <article class="role">
-            <div class="role-top">
+          <article class="job reveal">
+            <p class="when">Oct 2023 – Jul 2025</p>
+            <div>
               <h3>Sales Lead</h3>
-              <p class="dates">Oct 2023 – Jul 2025</p>
+              <p class="company">Aldo Group · Promoted from associate</p>
+              <ul>
+                <li>Promoted from associate to Sales Lead based on consistent performance, reliability, and product knowledge.</li>
+                <li>Led shift operations and coordinated team assignments to keep service standards and daily store targets on track.</li>
+              </ul>
+              <p class="transfer">This carries into software work: earning more responsibility by being dependable and following through.</p>
             </div>
-            <p class="company">Aldo Group · Promoted from associate</p>
-            <ul>
-              <li>Promoted from associate to Sales Lead based on consistent performance, reliability, and product knowledge.</li>
-              <li>Led shift operations and coordinated team assignments to keep service standards and daily store targets on track.</li>
-            </ul>
-            <p class="transfer">This carries into software work: earning more responsibility by being dependable and following through.</p>
           </article>
         </div>
       </section>
 
-      <section class="section" id="education" aria-labelledby="education-heading">
+      <section id="education" aria-labelledby="education-heading">
         <div class="section-head">
-          <h2 id="education-heading">Education</h2>
+          <h2 id="education-heading"><span class="num">04</span>Education</h2>
         </div>
-        <article class="edu">
+        <article class="edu reveal">
           <h3>Advanced Diploma, Computer Programming &amp; Analysis</h3>
           <p>Georgian College, Barrie, ON</p>
           <p>Aug 2023 – Aug 2026 · Graduate</p>
         </article>
       </section>
 
-      <section class="section" id="contact" aria-labelledby="contact-heading">
-        <div class="contact-grid">
+      <section id="contact" aria-labelledby="contact-heading">
+        <div class="section-head">
+          <h2 id="contact-heading"><span class="num">05</span>Contact</h2>
+        </div>
+        <div class="contact-block reveal">
           <address>
-            <h2 id="contact-heading">Contact</h2>
+            <a class="big-mail" href="mailto:rvrajveer14@gmail.com">rvrajveer14@gmail.com</a>
             <p>Rajveer Singh · Barrie, Ontario</p>
             <p>Open to full-time junior software developer roles.</p>
             <div class="contact-links">
-              <a href="mailto:rvrajveer14@gmail.com">rvrajveer14@gmail.com</a>
               <a href="tel:+14379731985">+1 (437) 973-1985</a>
               <a href="https://www.linkedin.com/in/rajveer-singh-a7b5182a6" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
               <a href="https://github.com/Rajveerrsingh" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
               <a href="resume/Rajveer_resume.pdf" download>Download resume (PDF)</a>
             </div>
           </address>
-          <aside class="aside-card">
+          <aside class="aside">
             <h3>What I am looking for</h3>
             <p>A full-time junior software developer role where I can contribute to APIs, application features, and the quality of the code around them.</p>
           </aside>
@@ -755,7 +1069,108 @@
   </main>
 
   <footer>
-    <div class="wrap">© 2026 Rajveer Singh · Barrie, Ontario</div>
+    <div class="wrap footer-inner">
+      <p>© 2026 Rajveer Singh · Barrie, Ontario</p>
+      <p>Press <kbd>?</kbd> for section shortcuts</p>
+    </div>
   </footer>
+
+  <dialog id="shortcuts" aria-labelledby="shortcuts-title">
+    <h2 id="shortcuts-title">Jump</h2>
+    <ul class="keys">
+      <li><a href="#projects"><kbd>1</kbd> Projects</a></li>
+      <li><a href="#skills"><kbd>2</kbd> Skills</a></li>
+      <li><a href="#experience"><kbd>3</kbd> Experience</a></li>
+      <li><a href="#education"><kbd>4</kbd> Education</a></li>
+      <li><a href="#contact"><kbd>5</kbd> Contact</a></li>
+      <li><span><kbd>?</kbd> Open this list</span></li>
+      <li><span><kbd>Esc</kbd> Close</span></li>
+    </ul>
+    <button class="dialog-close" type="button" data-close>Close</button>
+  </dialog>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var code = document.getElementById("intro-code");
+      var tpl = document.getElementById("intro-final");
+      var dialog = document.getElementById("shortcuts");
+      var openBtn = document.querySelector("[aria-controls='shortcuts']");
+
+      function showFinal() {
+        code.replaceChildren(tpl.content.cloneNode(true));
+        while (code.firstChild && code.firstChild.nodeType === 3 && !code.firstChild.textContent.trim()) {
+          code.removeChild(code.firstChild);
+        }
+      }
+
+      if (reduce || !code || !tpl) {
+        if (code && tpl) showFinal();
+      } else {
+        var plain = (tpl.content.textContent || "").replace(/^\s+/, "");
+        var i = 0;
+        code.textContent = "";
+        (function tick() {
+          i += 1;
+          code.textContent = plain.slice(0, i);
+          if (i < plain.length) {
+            window.setTimeout(tick, plain.charAt(i - 1) === "\n" ? 40 : 12);
+          } else {
+            showFinal();
+          }
+        })();
+      }
+
+      if (!reduce && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+        document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+      } else {
+        document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+      }
+
+      function openShortcuts() {
+        if (!dialog || dialog.open || typeof dialog.showModal !== "function") return;
+        dialog.showModal();
+      }
+
+      if (openBtn) openBtn.addEventListener("click", openShortcuts);
+      if (dialog) {
+        dialog.querySelector("[data-close]").addEventListener("click", function () { dialog.close(); });
+        dialog.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () { dialog.close(); });
+        });
+      }
+
+      var jumps = { "1": "#projects", "2": "#skills", "3": "#experience", "4": "#education", "5": "#contact" };
+      document.addEventListener("keydown", function (event) {
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
+        var target = event.target;
+        if (target && target.closest && target.closest("input, textarea, select, [contenteditable='true']")) return;
+        if (event.key === "?" || (event.key === "/" && event.shiftKey)) {
+          event.preventDefault();
+          openShortcuts();
+          return;
+        }
+        if (dialog && dialog.open) return;
+        var href = jumps[event.key];
+        if (!href) return;
+        var section = document.querySelector(href);
+        if (!section) return;
+        event.preventDefault();
+        section.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        var heading = section.querySelector("h2, h1");
+        if (heading) {
+          heading.setAttribute("tabindex", "-1");
+          heading.focus({ preventScroll: true });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
